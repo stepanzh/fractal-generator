@@ -257,14 +257,10 @@ input[type=checkbox] {
   text-align: center;
 }
 #menu > footer a {
-  text-decoration: none;
   color: #a6a6a6;
 }
 #menu > footer a:focus {
   outline: none;
-}
-#menu > footer div:first-child {
-  font-size: .8em;
 }
 /* ****************************************** */
 
