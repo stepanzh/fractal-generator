@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generate, edit and download finite fractal online for free.">
+  <meta name="keywords" content="stepanzh,fractal,math,js,svg,frontend,geometry,beauty,app,generator,online,free">
+
+  <title>stepanzh — Finite fractal generator</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" >
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+     m[i].l=1*new Date();
+     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+     k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+     ym(99933624, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+     });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/99933624" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+  <div class="body-wrapper">
+    <div id="mobile-warning">
+        <p>Woops...</p>
+        <p>This app does not support small screens, try to rotate your device or visit this site from a tablet or desktop.</p>
+        <p>Anyway, You're welcome to see more of my works.</p>
+        <p><a href="/">find more</a></p>
+    </div>
+    <div id="app">
+        <div id="menu">
+            <div class="menu__item">
+                <p class="item__label">Vertices</p>
+                <div class="item__func">
+                    <div>
+                        <span>Add</span><span>double click outside fractal</span>
+                    </div>
+                    <div>
+                        <span>Remove</span><span>double click on a vertex</span>
+                    </div>
+                    <div>
+                        <span>Move</span><span>drag by mouse</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu__item">
+                <p class="item__label">Generate from regular polygon</p>
+                <div class="item__func">
+                    <div id="poly-gen-form">
+                        <span>No. of vertices</span>
+                        <input type="text" id="inp-num-vertexes" value="9" maxlength="2" tabindex="1"/>
+                        <button id="poly-gen-form__btn" tabindex="2">generate</button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu__item">
+                <p class="item__label">Move vertices</p>
+                <div class="item__func">
+                    <input type="range" name="corners" min="0.0" max="1.0" value="0.2" default="0" step="0.005" placeholder="" id="range--corners" />
+                    
+                </div>
+            </div>
+            <div class="menu__item">
+                <p class="item__label">Number of recursion</p>
+                <div class="item__func">
+                    <input type="range" name="children" min="1" max="50" value="15" step="1" id="range--children" />
+                </div>
+            </div>
+            <div class="menu__item" id="menu__item--poly">
+                <p class="item__label">Foreground color</p>
+                <div class="item__func">
+                    <div class="gradient-choose" id="gradient--poly">
+                        <input type="color" id="color-poly--1" value="#F61344">
+                        <div class="color-show color-show--gradient" id="show-color-poly"></div>
+                        <input type="color" id="color-poly--2" value="#FFF17A">
+                        <div class="color--disable">
+                            <input type="checkbox" name="show-poly" value="poly" placeholder="1" id="check--showpoly" checked />
+                            <label for="check--showpoly"></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="menu__item" id="menu__item--lines">
+                <p class="item__label">Color of borders</p>
+                <div class="item__func">
+                    <div class="gradient-choose" id="gradient--lines">
+                        <input type="color" id="color-lines--1" value="#FFF17A">
+                        <div class="color-show color-show--gradient" id="show-color-lines"></div>
+                        <input type="color" id="color-lines--2" value="#F61344">
+                        <div class="color--disable">
+                            <input type="checkbox" name="show-lines" value="lines" placeholder="1" id="check--showlines" />
+                            <label for="check--showlines"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu__item">
+                <p class="item__label">Background color</p>
+                <div class="item__func">
+                    <div class="color-choose">
+                        <input type="color" id="color-bg" value="#F61344">
+                        <div class="color-show" id="show-color-bg"></div>
+                        <input type="color" class="js--hided" value="#00ff00">
+                        <div class="color--disable">
+                            <input type="checkbox" class="js--hided" checked />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu__item">
+                <p class="item__label">Download</p>
+                <div class="item__func">
+                    <button id="btn-save-svg" onclick="save_svg()">SVG</button>
+                </div>
+            </div>
+            <footer>
+                <div><a href="/" target="_blank">find more</a></div>
+            </footer>
+        </div>
+        <div id="display">
+            <div id="draw"></div>
+        </div>
+    </div>
+    
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.1/svg.js"></script>
+  <script src="script.js" type="text/javascript"></script>
+</body>
+</html>
